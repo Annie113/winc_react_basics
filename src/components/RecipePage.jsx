@@ -38,8 +38,13 @@ const RecipePage = ({ recipe, onClose }) => {
       />
 
       <Flex direction={{ base: 'column', md: 'row' }} gap={8}>
-        {/* Mealtyp, Dishtype, Cooking Time, Servings */}
-        <Box flex="2">
+        {/* Left Side with Background */}
+        <Box
+          flex="2"
+          bg="#EFEEEA"
+          p={6}
+          borderRadius="md"
+        >
           <Heading>{recipe.label}</Heading>
 
           <Text mt={4}>
@@ -81,11 +86,39 @@ const RecipePage = ({ recipe, onClose }) => {
               </List>
             </Box>
           )}
+        </Box>
 
-          {/* Nutrients */}
-          <Box mt={6}>
+        {/* Right Side - Health Labels and Nutrients */}
+        <Box flex="1" display="flex" flexDirection="column" gap={6}>
+          {recipe.healthLabels?.length > 0 && (
+            <Box
+              border="1px solid"
+              borderColor="#EFEEEA"
+              borderRadius="md"
+              p={6}
+            >
+              <Heading size="sm" mb={2}>
+                Health Labels
+              </Heading>
+              <Wrap spacing={2}>
+                {recipe.healthLabels.map((label, i) => (
+                  <WrapItem key={`${label}-${i}`}>
+                    <Badge colorScheme="green">{label}</Badge>
+                  </WrapItem>
+                ))}
+              </Wrap>
+            </Box>
+          )}
+
+          {/* Nutrients Box */}
+          <Box
+            border="1px solid"
+            borderColor="#EFEEEA"
+            borderRadius="md"
+            p={6}
+          >
             <Heading size="sm">Nutrients</Heading>
-            <Divider mt={2} mb={4} />
+            <Divider mt={2} mb={4} borderColor="#EFEEEA" />
 
             <Stack spacing={2} fontSize="md">
               <Stat>
@@ -126,24 +159,6 @@ const RecipePage = ({ recipe, onClose }) => {
               </Stat>
             </Stack>
           </Box>
-        </Box>
-
-        {/* Health Labels */}
-        <Box flex="1" mt={16}>
-          {recipe.healthLabels?.length > 0 && (
-            <Box>
-              <Heading size="sm" mb={2}>
-                Health Labels
-              </Heading>
-              <Wrap spacing={2}>
-                {recipe.healthLabels.map((label, i) => (
-                  <WrapItem key={`${label}-${i}`}>
-                    <Badge colorScheme="green">{label}</Badge>
-                  </WrapItem>
-                ))}
-              </Wrap>
-            </Box>
-          )}
         </Box>
       </Flex>
     </Box>
