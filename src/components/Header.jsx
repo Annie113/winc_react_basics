@@ -7,7 +7,7 @@ const Header = ({ greeting }) => {
       borderBottom="1px solid #EFEEEA"
       py={16}
       px={4}
-      width="1200px"
+      max-width="1200px"
       mx="auto"
       position="relative"
       left="0"
